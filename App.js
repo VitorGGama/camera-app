@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { Camera, CameraType } from "expo-camera";
-import { useState } from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         <Text style={{ textAlign: "center" }}>
           We need your permission to show the camera
         </Text>
-        <Button onPress={requestPermission} title="grant permission" />
+        <Button onPress={requestPermission} title="Grant Permission" />
       </View>
     );
   }
@@ -34,7 +34,10 @@ export default function App() {
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
+            <Text style={[styles.text, styles.redText]}>
+              Sorria, você está sendo filmado{" "}
+              <Text style={styles.emoji}>😮</Text>
+            </Text>
           </TouchableOpacity>
         </View>
       </Camera>
@@ -53,11 +56,11 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "transparent",
-    margin: 64,
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    padding: 20,
   },
   button: {
-    flex: 1,
     alignSelf: "flex-end",
     alignItems: "center",
   },
@@ -65,5 +68,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
+  },
+  redText: {
+    color: "red",
+  },
+  emoji: {
+    fontSize: 24,
   },
 });
